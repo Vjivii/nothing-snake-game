@@ -39,88 +39,141 @@
             position: relative;
         }
 
-        /* Nothing brand background pattern */
-        body::before {
-            content: '';
+        /* Welcome Screen */
+        .welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
-        .header {
+        .welcome-content {
+            background: var(--secondary-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
             text-align: center;
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 20px;
+            letter-spacing: 0.1em;
+            color: var(--accent-color);
+        }
+
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            letter-spacing: 0.05em;
+        }
+
+        .welcome-instructions {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .welcome-author {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .welcome-author a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .start-button {
+            background: var(--accent-color);
+            color: var(--primary-bg);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .start-button:hover {
+            background: #cccccc;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Game UI */
+        .game-ui {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
             z-index: 10;
         }
 
-        .title {
-            font-size: clamp(2rem, 8vw, 4rem);
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--accent-color), var(--text-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px var(--accent-glow);
-        }
-
-        .subtitle {
-            font-size: clamp(0.8rem, 3vw, 1.2rem);
-            color: var(--text-secondary);
-            letter-spacing: 0.1em;
-            font-weight: 300;
-        }
-
-        .game-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 450px;
-            margin-bottom: 20px;
-            padding: 0 20px;
-        }
-
-        .score-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .score-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.1em;
-            margin-bottom: 5px;
-        }
-
-        .score-value {
-            font-size: 2rem;
+        .score-current {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--accent-color);
             text-shadow: 0 0 10px var(--accent-glow);
         }
 
-        .high-score {
+        .score-high {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             font-size: 1rem;
             color: var(--text-secondary);
-            margin-top: 5px;
         }
 
         .controls-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 0.7rem;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .author {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-align: right;
+        }
+
+        .author a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .author a:hover {
             color: var(--text-secondary);
         }
 
@@ -144,50 +197,33 @@
             grid-template-rows: repeat(30, 1fr);
             width: 100%;
             height: 100%;
-            gap: 1px;
+            gap: 2px;
         }
 
         .pixel {
             width: 100%;
             height: 100%;
-            background: var(--secondary-bg);
+            background: #222;
+            border-radius: 50%;
             transition: all 0.1s ease;
             position: relative;
         }
 
         .snake {
             background: var(--accent-color);
-            box-shadow: 
-                0 0 8px var(--accent-glow),
-                inset 0 0 8px rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-        }
-
-        .snake-head {
-            background: linear-gradient(45deg, var(--accent-color), #cccccc);
-            box-shadow: 
-                0 0 12px var(--accent-glow),
-                inset 0 0 12px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff;
         }
 
         .food {
             background: var(--food-color);
-            box-shadow: 
-                0 0 8px var(--food-glow),
-                inset 0 0 8px rgba(255, 0, 0, 0.3);
-            border-radius: 50%;
-            animation: pulse 1.5s infinite ease-in-out;
+            box-shadow: 0 0 5px #f00, 0 0 10px #f00;
+            animation: pulse 1s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { 
-                opacity: 0.8; 
-                transform: scale(1);
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.1);
-            }
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
         }
 
         .game-overlay {
@@ -211,13 +247,13 @@
             border-radius: 12px;
             padding: 40px;
             width: 90%;
-            max-width: 350px;
+            max-width: 400px;
             text-align: center;
             box-shadow: 0 0 40px var(--accent-glow);
         }
 
         .game-over-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             margin-bottom: 20px;
             letter-spacing: 0.1em;
@@ -225,7 +261,7 @@
         }
 
         .final-score {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 30px;
             color: var(--text-secondary);
             letter-spacing: 0.05em;
@@ -242,20 +278,26 @@
             50% { text-shadow: 0 0 20px var(--success-color), 0 0 30px var(--success-color); }
         }
 
+        .button-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
         .button {
             background: var(--accent-color);
             color: var(--primary-bg);
             border: none;
-            padding: 15px 30px;
-            font-size: 1rem;
+            padding: 12px 25px;
+            font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 25px;
             transition: all 0.3s ease;
             font-family: 'JetBrains Mono', monospace;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            margin: 5px;
+            min-width: 100px;
         }
 
         .button:hover {
@@ -358,18 +400,13 @@
                 display: none;
             }
             
-            .game-stats {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .header {
-                margin-bottom: 15px;
+            .score-current, .score-high {
+                font-size: 1rem;
             }
         }
 
         @media (max-width: 480px) {
-            .game-over-content {
+            .game-over-content, .welcome-content {
                 padding: 30px 20px;
             }
             
@@ -377,6 +414,12 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.2rem;
+            }
+            
+            .button {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+                min-width: 80px;
             }
         }
 
@@ -402,60 +445,39 @@
                 opacity: 0;
             }
         }
-
-        .author {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            text-align: right;
-        }
-
-        .author a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .author a:hover {
-            color: var(--text-secondary);
-        }
-
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid var(--text-secondary);
-            border-radius: 50%;
-            border-top-color: var(--accent-color);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1 class="title">NOTHING SNAKE</h1>
-        <p class="subtitle">A MINIMALIST GAMING EXPERIENCE</p>
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-content">
+            <h1 class="welcome-title">NOTHING SNAKE</h1>
+            <p class="welcome-subtitle">A MINIMALIST GAMING EXPERIENCE</p>
+            <div class="welcome-instructions">
+                <p>Control the snake using arrow keys</p>
+                <p>Press SPACE to pause the game</p>
+                <p>Eat red dots to grow and increase your score</p>
+                <p>Avoid hitting walls or your own tail</p>
+            </div>
+            <div class="welcome-author">
+                created by <a href="https://t.me/andrewvjivii" target="_blank">@andrewvjivii</a>
+            </div>
+            <button class="start-button" id="start-game-btn">START GAME</button>
+        </div>
     </div>
 
-    <div class="game-stats">
-        <div class="score-container">
-            <div class="score-label">SCORE</div>
-            <div class="score-value" id="score">0</div>
-            <div class="high-score" id="high-score">HIGH: 0</div>
-        </div>
-        <div class="controls-info">
-            <div>USE ARROW KEYS</div>
-            <div>SPACE TO PAUSE</div>
+    <!-- Game UI -->
+    <div class="game-ui">
+        <div class="score-current" id="score">0</div>
+        <div class="score-high" id="high-score">HIGH: 0</div>
+        <div class="controls-info">USE ARROW KEYS SPACE TO PAUSE</div>
+        <div class="author">
+            <div>created by</div>
+            <a href="https://t.me/andrewvjivii" target="_blank">@andrewvjivii</a>
         </div>
     </div>
 
+    <!-- Game Container -->
     <div id="game-container">
         <div id="game-board"></div>
         
@@ -463,20 +485,25 @@
             <div class="game-over-content">
                 <h2 class="game-over-title">GAME OVER</h2>
                 <div class="final-score" id="final-score">0 POINTS</div>
-                <button class="button" id="restart-btn">RESTART</button>
-                <button class="button secondary" id="menu-btn">MENU</button>
+                <div class="button-row">
+                    <button class="button" id="restart-btn">RESTART</button>
+                    <button class="button secondary" id="menu-btn">MENU</button>
+                </div>
             </div>
         </div>
 
         <div class="pause-overlay" id="pause-overlay">
             <div class="pause-content">
                 <h2 class="pause-title">PAUSED</h2>
-                <button class="button" id="resume-btn">RESUME</button>
-                <button class="button secondary" id="restart-pause-btn">RESTART</button>
+                <div class="button-row">
+                    <button class="button" id="resume-btn">RESUME</button>
+                    <button class="button secondary" id="restart-pause-btn">RESTART</button>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Mobile Controls -->
     <div class="mobile-controls">
         <div class="control-row">
             <button class="control-btn up" data-direction="up">↑</button>
@@ -488,11 +515,6 @@
         </div>
     </div>
 
-    <div class="author">
-        <div>created by</div>
-        <a href="https://t.me/andrewvjivii" target="_blank">@andrewvjivii</a>
-    </div>
-
     <script>
         class SnakeGame {
             constructor() {
@@ -502,11 +524,13 @@
                 this.highScoreDisplay = document.getElementById('high-score');
                 this.gameOverScreen = document.getElementById('game-over');
                 this.pauseOverlay = document.getElementById('pause-overlay');
+                this.welcomeScreen = document.getElementById('welcome-screen');
                 this.finalScoreDisplay = document.getElementById('final-score');
                 this.restartBtn = document.getElementById('restart-btn');
                 this.menuBtn = document.getElementById('menu-btn');
                 this.resumeBtn = document.getElementById('resume-btn');
                 this.restartPauseBtn = document.getElementById('restart-pause-btn');
+                this.startGameBtn = document.getElementById('start-game-btn');
 
                 this.snake = [{ x: 15, y: 15 }];
                 this.food = this.generateFood();
@@ -528,7 +552,6 @@
                 this.createBoard();
                 this.setupEventListeners();
                 this.updateHighScoreDisplay();
-                this.startGame();
             }
 
             createBoard() {
@@ -554,18 +577,14 @@
             draw() {
                 const pixels = document.querySelectorAll('.pixel');
                 pixels.forEach(pixel => {
-                    pixel.classList.remove('snake', 'snake-head', 'food');
+                    pixel.classList.remove('snake', 'food');
                 });
 
                 // Draw snake
                 this.snake.forEach((segment, index) => {
                     const pixelIndex = segment.y * this.boardSize + segment.x;
                     if (pixelIndex >= 0 && pixelIndex < pixels.length) {
-                        const pixel = pixels[pixelIndex];
-                        pixel.classList.add('snake');
-                        if (index === 0) {
-                            pixel.classList.add('snake-head');
-                        }
+                        pixels[pixelIndex].classList.add('snake');
                     }
                 });
 
@@ -670,10 +689,16 @@
                 this.food = this.generateFood();
                 this.gameOverScreen.style.display = 'none';
                 this.pauseOverlay.style.display = 'none';
+                this.welcomeScreen.style.display = 'none';
                 this.isPaused = false;
                 this.isGameOver = false;
                 this.createBoard();
                 this.updateSpeed();
+            }
+
+            showMenu() {
+                this.welcomeScreen.style.display = 'flex';
+                clearInterval(this.gameInterval);
             }
 
             createTouchFeedback(x, y) {
@@ -706,6 +731,9 @@
             }
 
             setupEventListeners() {
+                // Welcome screen
+                this.startGameBtn.addEventListener('click', () => this.startGame());
+
                 // Keyboard controls
                 document.addEventListener('keydown', (e) => {
                     if (e.code === 'Space') {
@@ -750,7 +778,7 @@
 
                 // Button events
                 this.restartBtn.addEventListener('click', () => this.startGame());
-                this.menuBtn.addEventListener('click', () => this.startGame());
+                this.menuBtn.addEventListener('click', () => this.showMenu());
                 this.resumeBtn.addEventListener('click', () => this.pause());
                 this.restartPauseBtn.addEventListener('click', () => this.startGame());
 
