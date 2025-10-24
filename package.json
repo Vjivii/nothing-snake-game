@@ -1,0 +1,34 @@
+{
+  "name": "nothing-snake-game",
+  "version": "1.0.0",
+  "description": "A minimalist Snake game inspired by the Nothing brand aesthetic",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "snake",
+    "game",
+    "html5",
+    "javascript",
+    "nothing",
+    "brand",
+    "minimalist",
+    "mobile",
+    "responsive"
+  ],
+  "author": "andrewvjivii",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewvjivii/nothing-snake-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andrewvjivii/nothing-snake-game/issues"
+  },
+  "homepage": "https://andrewvjivii.github.io/nothing-snake-game/",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
