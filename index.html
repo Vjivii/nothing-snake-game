@@ -56,19 +56,16 @@
         }
 
         .welcome-content {
-            background: var(--secondary-bg);
-            border: 2px solid var(--border-color);
+            background: var(--primary-bg);
+            
             border-radius: 12px;
             padding: 40px;
             width: 90%;
             max-width: 400px;
             text-align: center;
-            box-shadow: 0 0 40px var(--accent-glow);
-        }
-
         .welcome-title {
             font-size: 2.5rem;
-            font-weight: 700;
+            font-weight: 400;
             margin-bottom: 20px;
             letter-spacing: 0.1em;
             color: var(--accent-color);
@@ -117,9 +114,6 @@
         .start-button:hover {
             background: #cccccc;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-        }
-
         /* Game UI */
         .game-ui {
             position: fixed;
@@ -136,7 +130,7 @@
             top: 20px;
             left: 20px;
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 400;
             color: var(--accent-color);
             text-shadow: 0 0 10px var(--accent-glow);
         }
@@ -182,12 +176,9 @@
             width: min(450px, 90vw);
             height: min(450px, 90vw);
             margin: 0 auto;
-            background: var(--secondary-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 
-                0 0 30px var(--accent-glow),
-                inset 0 0 30px rgba(255, 255, 255, 0.02);
+            background: var(--primary-bg);
+            
+            
             overflow: hidden;
         }
 
@@ -211,14 +202,8 @@
 
         .snake {
             background: var(--accent-color);
-            box-shadow: 0 0 5px #fff, 0 0 10px #fff;
-        }
-
         .food {
             background: var(--food-color);
-            box-shadow: 0 0 5px #f00, 0 0 10px #f00;
-            animation: pulse 1s infinite;
-        }
 
         @keyframes pulse {
             0% { opacity: 0.8; }
@@ -242,19 +227,16 @@
         }
 
         .game-over-content {
-            background: var(--secondary-bg);
-            border: 2px solid var(--border-color);
+            background: var(--primary-bg);
+            
             border-radius: 12px;
             padding: 40px;
             width: 90%;
             max-width: 400px;
             text-align: center;
-            box-shadow: 0 0 40px var(--accent-glow);
-        }
-
         .game-over-title {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 400;
             margin-bottom: 20px;
             letter-spacing: 0.1em;
             color: var(--accent-color);
@@ -269,7 +251,7 @@
 
         .new-high-score {
             color: var(--success-color);
-            font-weight: 700;
+            font-weight: 400;
             animation: glow 2s infinite;
         }
 
@@ -303,9 +285,6 @@
         .button:hover {
             background: #cccccc;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-        }
-
         .button:active {
             transform: translateY(0);
         }
@@ -337,8 +316,8 @@
         .control-btn {
             width: 60px;
             height: 60px;
-            background: var(--secondary-bg);
-            border: 2px solid var(--border-color);
+            background: var(--primary-bg);
+            
             border-radius: 12px;
             color: var(--accent-color);
             font-size: 1.5rem;
@@ -384,7 +363,7 @@
 
         .pause-title {
             font-size: 2rem;
-            font-weight: 700;
+            font-weight: 400;
             margin-bottom: 20px;
             letter-spacing: 0.1em;
         }
@@ -470,7 +449,7 @@
     <div class="game-ui">
         <div class="score-current" id="score">0</div>
         <div class="score-high" id="high-score">HIGH: 0</div>
-        <div class="controls-info">USE ARROW KEYS SPACE TO PAUSE</div>
+        <div class="controls-info">use arrow keys<br>space to pause</div>
         <div class="author">
             <div>created by</div>
             <a href="https://t.me/andrewvjivii" target="_blank">@andrewvjivii</a>
